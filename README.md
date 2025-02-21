@@ -21,7 +21,7 @@ ASL-Recognition-with-Convolutional-Neural-Networks/
 │  
 ├── notebooks/  
 │ ├── ASL Recognition.ipynb # Jupyter Notebook with model training  
-│ ├── ASL Recognition.pdf # PDF version of code  
+│ ├── ASL Recognition.html # html version of code  
 │  
 ├── reports/  
 │ ├── Sign Language Recognition Using Deep Learning.pdf # Final Project Report  
