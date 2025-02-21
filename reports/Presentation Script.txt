@@ -1,0 +1,106 @@
+Sure, here's a video script that explains the code you provided:
+
+[INTRODUCTION]
+
+Presenter: Welcome to this video where i'll walk through the code for building a deep learning model to recognize American Sign Language gestures. This code is divided into several sections, each serving a specific purpose in the project.
+
+[LOADING LIBRARIES]
+
+Presenter: I start by loading the necessary libraries and frameworks. These libraries include essential tools for data manipulation, visualization, and building deep neural networks. 
+
+[DATA EXTRACTION]
+
+Presenter: The next code snippet also sets up the categories for each gesture we want to recognize. Now, we move on to data extraction. This part of the code reads the dataset from a specified directory, organizes it into a DataFrame, and shuffles the data for better training. This ensures that our model doesn't learn any unwanted patterns due to data ordering.
+
+[DATA EXPLORATION]
+
+Presenter: Before diving into building the model, it's essential to explore the data. This section of the code generates a grid of sample images from the dataset to give us a visual understanding of the gestures. Additionally, I also provides a bar chart showing the distribution of different classes in the dataset.
+
+[TRAIN-TEST SPLIT]
+
+Presenter: To train and evaluate our model, we need to split the data into training, validation, and test sets. This code snippet uses the splitfolders library to achieve this. It ensures that we have a balanced distribution of data across the sets of 80,10,10 and to make it more conitent we dd  seed of 1234.
+
+[DATA PREPARATION]
+
+Presenter: Now, it's time to prepare our data for training. We use an ImageDataGenerator to rescale pixel values and set up data generators for the training, validation, and test sets. This step is crucial for efficiently loading and augmenting our data during training. We can see number of training samples: 2012, validation samples: 251, test samples: 252 and classes: 36. and I diplay a grid of training data for visualition purposes
+
+[MODEL ARCHITECTURE]
+
+Presenter: 
+The model architecture the convolutional neural network (CNN) designed for the task. Let's break down the architecture step by step:
+
+Input Layer: The input layer is implicit in Keras when you specify the input shape in the first convolutional layer. In our case, the input shape is where image_size is 200, and img_channel is 3 (indicating RGB color channels).
+
+Convolutional Layers: The model consists of three blocks of convolutional layers, where each block contains two convolutional layers followed by max-pooling and dropout layers. These layers are used for feature extraction from the input images.
+
+Block 1:
+
+Conv2D (32 filters, 3x3 kernel size, ReLU activation, 'same' padding)
+Conv2D (32 filters, 3x3 kernel size, ReLU activation, 'same' padding)
+MaxPooling2D (2x2 pool size, 'same' padding)
+Dropout (20% dropout rate)
+Block 2:
+
+Conv2D (64 filters, 3x3 kernel size, ReLU activation, 'same' padding)
+Conv2D (64 filters, 3x3 kernel size, ReLU activation, 'same' padding)
+MaxPooling2D (2x2 pool size, 'same' padding)
+Dropout (30% dropout rate)
+Block 3:
+
+Conv2D (128 filters, 3x3 kernel size, ReLU activation, 'same' padding)
+Conv2D (128 filters, 3x3 kernel size, ReLU activation, 'same' padding)
+MaxPooling2D (2x2 pool size, 'same' padding)
+Dropout (40% dropout rate)
+Flatten Layer: This layer is used to flatten the output from the convolutional layers into a 1D vector. This prepares the data for the fully connected layers.
+
+Fully Connected Layers:
+
+Dense (512 units, ReLU activation): This layer has 512 units and a ReLU activation function.
+Dropout (20% dropout rate)
+Dense (128 units, ReLU activation): Another fully connected layer with 128 units and a ReLU activation function.
+Dropout (30% dropout rate)
+Dense (36 units, softmax activation): The output layer with 36 units, representing the 36 classes of ASL signs. It uses softmax activation for multi-class classification.
+Model Summary: The model summary provides a concise overview of the architecture, including the number of parameters in each layer. In our case, the model has a total of 41,317,828 parameters.
+
+Callbacks:
+
+EarlyStopping: Monitors validation loss and stops training if it doesn't improve for a certain number of epochs (patience). Helps prevent overfitting.
+ReduceLROnPlateau: Reduces the learning rate if the validation accuracy plateaus, allowing the model to converge more effectively.
+This architecture is designed for image classification tasks like ASL recognition. It uses a series of convolutional layers to capture hierarchical features from the input images, followed by fully connected layers for classification. Dropout layers are included to prevent overfitting, and the final softmax activation layer assigns probabilities to each of the 36 ASL classes.
+
+
+[COMPILE & FIT THE MODEL]
+
+Presenter: After designing the model, we compile it by specifying the optimizer, loss function, and evaluation metric. Then, we fit the model to the training data, providing the validation data and callbacks. The code output displays the training progress, including loss and accuracy.
+
+[EVALUATION]
+
+Presenter: With our model trained, we can evaluate its performance. We calculate and display the accuracy and loss for both the training and validation datasets. This helps us assess how well the model generalizes to unseen data.
+
+[PLOTS FOR ACCURACY & LOSS]
+
+Presenter: These plots provide a visual representation of how our model's accuracy and loss change with each epoch. We can see how well our model is learning from the training data and if there are signs of overfitting.
+
+[PREDICTIONS & CONFUSION MATRIX]
+
+Presenter: This section is all about making predictions. We apply our trained model to the test dataset, generate predictions, and compare them with the true labels. The confusion matrix and a classification report are displayed to analyze the model's performance in detail.
+Talk about outputs : 
+2 instances of '0' were misinterpreted as 'o.'
+1 instance of 'a' was misinterpreted as 'n.'
+1 instance of 'd' was misinterpreted as 'v.'
+1 instance of 'f' was misinterpreted as 'z.'
+1 instance of 'i' was misinterpreted as 'g.'
+1 instance of 't' was misinterpreted as 's.'
+1 instance of 'w' was misinterpreted as '6.'
+
+[TRANSFER LEARNING]
+
+Presenter: Lastly, we explore the option of using transfer learning with a pre-trained VGG16 model. We fine-tune the model for our ASL gesture recognition task and evaluate its performance on the validation and test datasets.
+
+One instance of the ASL sign '0' was misinterpreted as 'o.'
+Two instances of the ASL sign 'o' were misinterpreted as '0.'
+
+
+[CONCLUSION]
+
+Presenter: And that brings us to the end of our code walkthrough. We've covered loading libraries, data extraction, exploration, model architecture, training, evaluation, and even a glimpse into transfer learning. This code has a basic the foundation for recognizing American Sign Language gestures, opening up opportunities for various applications.
